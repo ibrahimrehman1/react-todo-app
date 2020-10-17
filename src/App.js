@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import {TextField, Button, ButtonGroup} from "@material-ui/core"
+import {TextField, ButtonGroup} from "@material-ui/core"
 
 
 export default class App extends Component{
@@ -48,7 +48,9 @@ export default class App extends Component{
             }
         }
         if (value){
+            console.log(event.target)
             let x = event.target.parentNode.parentNode.parentNode.parentNode.childNodes[0].innerText.split("\n")[0];
+            console.log(`{${x}}`)
             let newArr = this.state.arr.map((obj)=>{
                 if (obj === x){
                     return value
@@ -56,6 +58,7 @@ export default class App extends Component{
                     return obj
                 }
             })
+            console.log(`NewArr: ${newArr}`)
             this.setState({...this.state, arr: newArr})
         }
     }
@@ -67,7 +70,7 @@ export default class App extends Component{
                 <div className="main">
                         <div style={{display: "inline-block"}}>
                             <TextField id="standard-basic" label="Enter Task" onChange={(e)=>this.setState({value: e.target.value})} value={this.state.value}/>
-                            <Button variant="contained" color="secondary" style={{verticalAlign: "bottom", marginLeft: "10px"}} onClick={this.addTask}>Add</Button>
+                            <button onClick={this.addTask} style={{backgroundColor: "#f50057", borderWidth: "0px",borderRadius: "3px", fontSize: "0.875rem", padding: "8px 18px", color: "white", verticalAlign: "bottom"}} className="btn">ADD</button>
                             <ul style={{listStyleType: "square", listStylePosition: "inside", paddingLeft: "0px", textAlign: "start"}}>
                                 {this.state.arr.map((obj, index)=>{
                                     return(
@@ -75,8 +78,8 @@ export default class App extends Component{
                                             <h4 style={{display: "inline-block"}}>{obj}</h4>
                                             <div style={{display: "inline-block"}}>
                                                 <ButtonGroup style={{paddingLeft: "20px"}}>
-                                                    <Button variant="contained" color="primary" onClick={this.edit}>Edit</Button>
-                                                    <Button variant="contained" color="secondary" onClick={this.delete}>Delete</Button>
+                                                    <button onClick={this.edit} style={{backgroundColor: "#f50057", borderWidth: "0px",borderRadius: "3px", fontSize: "0.875rem", padding: "8px 18px", color: "white"}} className="btn">Edit</button>
+                                                    <button onClick={this.delete} style={{backgroundColor: "dodgerblue", borderWidth: "0px",borderRadius: "3px", fontSize: "0.875rem", padding: "8px 18px", color: "white"}} className="btn">Delete</button>
                                                 </ButtonGroup>
                                             </div>
                                         </li>
