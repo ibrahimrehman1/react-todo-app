@@ -16,12 +16,3 @@ code {
 .main{
   text-align: center;
 }
-
-.btn{
-  font-weight: 600;
-}
-
-.btn:hover{
-  cursor: pointer;
-  
-}

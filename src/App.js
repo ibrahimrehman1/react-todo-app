@@ -1,8 +1,59 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 
 // MUI Components
 import TextField from "@mui/material/TextField";
 import ButtonGroup from "@mui/material/ButtonGroup";
+
+// Styled Components
+const Heading1 = styled.h1`
+  text-align: center;
+  background: #f50057;
+  margin-top: 0px;
+  font-size: 2.5rem;
+  padding: 0.1em;
+`;
+
+const Button = styled.button`
+  background-color: ${(props) =>
+    props.add ? "#f50057" : props.edit ? "dodgerblue" : "#f50057"};
+  border-width: 0px;
+  border-radius: 3px;
+  font-size: 0.875rem;
+  color: white;
+  width: 80px;
+  min-height: 30px;
+  font-weight: 600;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
+const List = styled.ul`
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  align-items:center;
+  list-style-type: square;
+  list-style-position: inside;
+  padding-left: 0px;
+  text-align: start;
+  font-size: 1.2rem;
+
+
+  
+`;
+
+const BtnGroup = styled(ButtonGroup)`
+  margin-left: 20px;
+  min-width: 160px;
+`;
 
 // TODO Component
 export default function TODO() {
@@ -52,90 +103,38 @@ export default function TODO() {
 
   return (
     <>
-      <h1
-        color="primary"
-        style={{
-          textAlign: "center",
-          background: "#f50057",
-          marginTop: "0px",
-          fontSize: "2.5rem",
-          padding: "0.1em",
-        }}
-      >
-        TODO APP
-      </h1>
+      <Heading1>TODO APP</Heading1>
       <div className="main">
-        <div style={{ display: "inline-block" }}>
+        <Container>
           <TextField
             id="standard-basic"
             label="Enter Task"
             onChange={(e) => setValue(e.target.value)}
             value={value}
+            size="small"
           />
-          <button
-            onClick={addTask}
-            style={{
-              backgroundColor: "#f50057",
-              borderWidth: "0px",
-              borderRadius: "3px",
-              fontSize: "0.875rem",
-              padding: "8px 18px",
-              color: "white",
-              verticalAlign: "bottom",
-            }}
-            className="btn"
-          >
+          <Button onClick={addTask} add>
             ADD
-          </button>
-          <ul
-            style={{
-              listStyleType: "square",
-              listStylePosition: "inside",
-              paddingLeft: "0px",
-              textAlign: "start",
-            }}
-          >
-            {arr.map((obj, index) => {
-              return (
-                <li key={index} style={{ marginBottom: "20px" }}>
-                  <h4 style={{ display: "inline-block" }}>{obj}</h4>
-                  <div style={{ display: "inline-block" }}>
-                    <ButtonGroup style={{ paddingLeft: "20px" }}>
-                      <button
-                        onClick={() => edit(index)}
-                        style={{
-                          backgroundColor: "#f50057",
-                          borderWidth: "0px",
-                          borderRadius: "3px",
-                          fontSize: "0.875rem",
-                          padding: "8px 18px",
-                          color: "white",
-                        }}
-                        className="btn"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={() => delete_(index)}
-                        style={{
-                          backgroundColor: "dodgerblue",
-                          borderWidth: "0px",
-                          borderRadius: "3px",
-                          fontSize: "0.875rem",
-                          padding: "8px 18px",
-                          color: "white",
-                        }}
-                        className="btn"
-                      >
-                        Delete
-                      </button>
-                    </ButtonGroup>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+          </Button>
+        </Container>
+
+        <List>
+          {arr.map((obj, index) => {
+            return (
+              <li key={index}>
+                <span>{obj}</span>
+                <BtnGroup>
+                  <Button onClick={() => edit(index)} edit>
+                    Edit
+                  </Button>
+                  <Button onClick={() => delete_(index)} delete>
+                    Delete
+                  </Button>
+                </BtnGroup>
+              </li>
+            );
+          })}
+        </List>
       </div>
     </>
   );
