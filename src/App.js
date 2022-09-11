@@ -22,7 +22,7 @@ const Button = styled.button`
   font-size: 0.875rem;
   color: white;
   width: 80px;
-  min-height: 30px;
+  height: 40px;
   font-weight: 600;
   &:hover {
     cursor: pointer;
@@ -39,20 +39,32 @@ const List = styled.ul`
   display: flex;
   flex-direction: column;
   margin-top: 20px;
-  align-items:center;
-  list-style-type: square;
-  list-style-position: inside;
+  align-items: flex-start;
   padding-left: 0px;
   text-align: start;
   font-size: 1.2rem;
+  width: 350px;
 
-
-  
+  & > li {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
 `;
 
 const BtnGroup = styled(ButtonGroup)`
   margin-left: 20px;
   min-width: 160px;
+`;
+
+const Main = styled.main`
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 `;
 
 // TODO Component
@@ -104,7 +116,7 @@ export default function TODO() {
   return (
     <>
       <Heading1>TODO APP</Heading1>
-      <div className="main">
+      <Main>
         <Container>
           <TextField
             id="standard-basic"
@@ -135,7 +147,7 @@ export default function TODO() {
             );
           })}
         </List>
-      </div>
+      </Main>
     </>
   );
 }
