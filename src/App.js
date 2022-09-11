@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import {Helmet} from "react-helmet";
 
 // MUI Components
 import TextField from "@mui/material/TextField";
@@ -115,6 +116,9 @@ export default function TODO() {
 
   return (
     <>
+      <Helmet>
+        <title>TODO Application</title>
+      </Helmet>
       <Heading1>TODO APP</Heading1>
       <Main>
         <Container>
